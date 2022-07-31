@@ -1,4 +1,12 @@
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(plumber,randomForestSRC) 
+
+my_packages = c("plumber","randomForestSRC")
+
+install_if_missing = function(p) {
+  if (p %in% rownames(installed.packages()) == FALSE) {
+    install.packages(p, clean=TRUE, quiet=TRUE)
+  }
+}
+
+invisible(sapply(my_packages, install_if_missing))
 
 
